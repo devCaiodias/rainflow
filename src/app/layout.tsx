@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MainContainer from "./components/layout/MainContainer";
 
 export const metadata: Metadata = {
   title: "RainFlow",
@@ -16,7 +17,10 @@ export default function RootLayout({
       <body
         className="antialiased bg-no-repeat bg-cover"
       >
-        {children}
+        <MainContainer>
+
+          {children}
+        </MainContainer>
       </body>
     </html>
   );
