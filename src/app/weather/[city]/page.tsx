@@ -10,6 +10,7 @@ export default async function WeatherPage({ params }: { params: { city: string} 
   // Buscar dados do clima
   const weather = await fetchWeather(city);
 
+  //  Caso não exista a cidade ou escreva errado
   if (!weather) {
     return ( 
       <div className='m-auto w-[700px] bg-white bg-opacity-40 text-center rounded-3xl p-8'>
@@ -18,13 +19,15 @@ export default async function WeatherPage({ params }: { params: { city: string} 
  )
   }
   
+  // dados de previsão horária
   const {lat, lon} = weather.coord;
-
   const hourly = await fetchHourlyWeather(lat, lon)
 
+  // dados UvIndex
   const {coord} = weather
   const uvIndex = await fetchUVIndex(coord.lat, coord.lon)
 
+  // convertendo para Inhg da Pressão
   const pressureInHg = (weather.main.pressure * 0.02953).toFixed(2);
 
   return (
@@ -89,15 +92,3 @@ export default async function WeatherPage({ params }: { params: { city: string} 
     </main>
   );
 }
-
-
-{/* <main className="flex flex-col items-center justify-center min-h-screen p-4">
-<h1 className="text-4xl mb-4">🌦️ Clima em {weather.name}</h1>
-<p className="text-2xl">🌡️ Temperatura: {weather.main.temp}°C</p>
-<p className="text-lg">🌤️ Condição: {weather.weather[0].description}</p>
-<p className="text-lg">💨 Vento: {weather.wind.speed} km/h</p>
-<p className="text-lg">📊 Umidade: {weather.main.humidity}%</p>
-<a href="/" className="mt-8 p-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-  🔙 Voltar
-</a>
-</main> */}

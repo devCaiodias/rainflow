@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+//  Pegando dados do .env.local
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const ONE_CALL_URL = 'https://api.openweathermap.org/data/3.0/onecall';
+
+//  Api para pegar Uv Index
 
 export async function fetchUVIndex(lat: number, lon: number) {
   try {
