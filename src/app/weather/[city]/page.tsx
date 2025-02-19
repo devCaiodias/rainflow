@@ -65,7 +65,8 @@ export default async function WeatherPage({ params }: WeatherPageProps) {
               <Image
                 src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
                 alt={hour.weather[0].description}
-                className="w-10 h-10"
+                width={40}
+                height={40}
               />
               <p>{new Date(hour.dt * 1000).getHours()}:00</p>
             </div>
