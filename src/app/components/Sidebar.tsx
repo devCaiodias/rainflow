@@ -14,7 +14,7 @@ export default function Sidebar() {
             {/* Navigation link */}
             <div className="-mt-8 mx-40">
                 <Link href="/" className="mr-16 p-2 text-fuchsia-50 hover:border-b-2 hover:border-blue-50">Home</Link>
-                <Link href="#" className="p-2 text-fuchsia-50 hover:border-b-2 hover:border-blue-50">About Us</Link>
+                <Link href="https://www.linkedin.com/in/caio-dias-martins-26739b251/" className="p-2 text-fuchsia-50 hover:border-b-2 hover:border-blue-50">Creator</Link>
             </div>
             
         </div>

@@ -1,10 +1,16 @@
 import { fetchWeather } from '../../api/weather';
 import { fetchHourlyWeather } from '@/app/api/hourlyweather';
-import { fetchUVIndex } from '@/app/api/uvIndex';
 
-export default async function WeatherPage({ params }: { params: { city: string} }) {
+interface WeatherPageProps {
+  params: { city: string };
+}
+
+export default async function WeatherPage({ params }: WeatherPageProps) {
+
+  const parametro = await params;
+  
   // Decodificar a cidade da URL
-  const city = decodeURIComponent(params.city.replace(/-/g, ' '));
+  const city = decodeURIComponent(parametro.city.replace(/-/g, ' '));
   
 
   // Buscar dados do clima
@@ -23,10 +29,6 @@ export default async function WeatherPage({ params }: { params: { city: string} 
   const {lat, lon} = weather.coord;
   const hourly = await fetchHourlyWeather(lat, lon)
 
-  // dados UvIndex
-  const {coord} = weather
-  const uvIndex = await fetchUVIndex(coord.lat, coord.lon)
-
   // convertendo para Inhg da Pressão
   const pressureInHg = (weather.main.pressure * 0.02953).toFixed(2);
 
@@ -35,7 +37,7 @@ export default async function WeatherPage({ params }: { params: { city: string} 
       <div className='items-center justify-center mx-7 my-3 font-bold '>
         <div className='text-center'>
           <p>{weather.name}</p>
-          <p>{weather.weather[0].main}</p>
+          <p>{weather.weather[0].description}</p>
           <span className='text-6xl'>{Math.floor(weather.main.temp)}°C</span>
           <p>feels like {Math.floor(weather.main.feels_like)}°C</p>
           <p>high  {Math.floor(weather.main.temp_max)}° - Low {Math.floor(weather.main.temp_min)}°</p>
@@ -64,8 +66,8 @@ export default async function WeatherPage({ params }: { params: { city: string} 
             <h1 className='my-2'>{weather.main.humidity}%</h1>
           </div>
           <div className='text-center p-2 my-3 rounded-2xl bg-white bg-opacity-30'>
-            <p className='my-3 font-semibold'>☀ Uv index</p>
-            <h1 className='my-2'>{uvIndex !== null ? uvIndex : 0}</h1>
+            <p className='my-3 font-semibold'>Country code</p>
+            <h1 className='my-2'>{weather.sys.country}</h1>
           </div>
           <div className='text-center p-2 my-3 rounded-2xl bg-yellow-200 bg-opacity-30'>
             <p className='my-2 font-semibold'> Sunrise Sunset</p>
