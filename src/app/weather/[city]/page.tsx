@@ -1,8 +1,21 @@
+import Image from 'next/image';
 import { fetchWeather } from '../../api/weather';
 import { fetchHourlyWeather } from '@/app/api/hourlyweather';
 
 interface WeatherPageProps {
-  params: { city: string };
+  params: Promise<{ city: string}>;
+}
+
+// tipando os dados do clima por horas
+interface HourlyWeather {
+  dt: number; // Data/hora em formato Unix (timestamp)
+  main: {
+    temp: number // Temperatura em °C
+  };
+  weather:{
+    description: string // Descrição do clima
+    icon: string // Código do ícone do clima
+  }[];
 }
 
 export default async function WeatherPage({ params }: WeatherPageProps) {
@@ -46,10 +59,10 @@ export default async function WeatherPage({ params }: WeatherPageProps) {
         <div className='my-3 bg-slate-400 bg-opacity-65 rounded-2xl p-2'>
           <p>🕐 hourly forecast</p>
           <div className='flex my-3'>
-          {hourly?.list.slice(0, 5).map((hour: any, index: number) => (
+          {hourly?.list.slice(0, 5).map((hour: HourlyWeather, index: number) => (
             <div key={index} className="text-center mx-2">
               <p>{Math.round(hour.main.temp)}°</p>
-              <img
+              <Image
                 src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
                 alt={hour.weather[0].description}
                 className="w-10 h-10"
