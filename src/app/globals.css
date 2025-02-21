@@ -20,3 +20,47 @@ body {
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.text_main {
+  @apply text-8xl text-white w-8/12 ml-16 pb-7
+}
+
+@media (max-width: 640px) { 
+
+  .container_main {
+    @apply bg-center h-[105.50vh]
+  }
+
+  .sidebar_container {
+    @apply block -mt-9
+  }
+
+  .sidebar_img {
+    @apply flex items-center justify-center -ml-10
+  }
+  
+  .sidebar_links {
+     @apply flex items-center justify-center mx-0
+  }
+
+  .text_main {
+    @apply text-6xl text-center mt-6
+  }
+
+  .form {
+    @apply block
+  }
+  
+  .input-weather {
+    @apply flex items-center justify-center 
+  }
+
+  .input-weather input {
+    @apply ml-0
+  }
+
+  .btn-weather {
+    @apply text-center
+  }
+  
+}
