@@ -46,8 +46,8 @@ export default async function WeatherPage({ params }: WeatherPageProps) {
   const pressureInHg = (weather.main.pressure * 0.02953).toFixed(2);
 
   return (
-    <main className="flex bg-white bg-opacity-45 w-[680px] m-auto rounded-3xl">
-      <div className='items-center justify-center mx-7 my-3 font-bold '>
+    <main className="main_city flex bg-white bg-opacity-45 w-[680px] m-auto rounded-3xl">
+      <div className='div_city items-center justify-center mx-7 my-3 font-bold '>
         <div className='text-center'>
           <p>{weather.name}</p>
           <p>{weather.weather[0].description}</p>
@@ -74,7 +74,7 @@ export default async function WeatherPage({ params }: WeatherPageProps) {
           </div>
         </div>
       </div>
-      <div>
+      <div className='div_detalhes'>
           <div className='text-center p-2 my-3 rounded-2xl bg-teal-400 bg-opacity-30'>
             <p className='my-3 font-semibold'>💧 Humidity</p>
             <h1 className='my-2'>{weather.main.humidity}%</h1>
@@ -90,7 +90,7 @@ export default async function WeatherPage({ params }: WeatherPageProps) {
           </div>
       </div>
           
-      <div>
+      <div className='div_detalhes'>
           <div className='text-center p-2 my-3 ml-9 rounded-2xl bg-lime-400 bg-opacity-30'>
             <p className='my-3 mx-6 font-semibold'>🍃 Wind</p>
             <h1 className='my-2'>{Math.floor(weather.wind.speed)}%</h1>

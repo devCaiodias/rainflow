@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="container_main antialiased bg-no-repeat bg-cover"
+        className="container_main antialiased bg-no-repeat bg-cover bg-fixed"
       >
         <MainContainer>
 
